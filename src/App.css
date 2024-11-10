@@ -1,38 +1,325 @@
-.App {
+/* Global Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+  padding-top: 60px;
+  /* Space for sticky header */
+  transition: background-color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background: linear-gradient(45deg, #4CAF50, #3e8e41);
+  padding: 1.8rem 3rem;
   text-align: center;
+  color: white;
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header:hover {
+  background: linear-gradient(45deg, #45a049, #388e3c);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Input and Select Box Styles */
+input[type="text"],
+select,
+button {
+  font-size: 1.1rem;
+  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus,
+button:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Button Styles */
+button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+}
+
+/* Recipe Card Styles */
+.recipe-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  padding: 1.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card img {
+  width: 100%;
+  max-width: 280px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card img:hover {
+  transform: scale(1.1);
+}
+
+.recipe-card h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.recipe-card a {
+  color: #4CAF50;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.recipe-card a:hover {
+  color: #388e3c;
+  text-decoration: underline;
+}
+
+/* Recipe Details */
+.recipe-details {
+  max-width: 950px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.recipe-details h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.recipe-details h3 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  color: #444;
+  font-weight: 600;
+}
+
+.recipe-details ul {
+  list-style-type: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.recipe-details li {
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 0.6rem;
+  padding-left: 10px;
+  position: relative;
+}
+
+.recipe-details li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #4CAF50;
+  font-size: 1.6rem;
+}
+
+/* Saved Recipes */
+.saved-button {
+  background-color: #ff6347;
   color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.saved-button:hover {
+  background-color: #e55347;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.saved-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+}
+
+/* Recipe List */
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.recipe-list .recipe-card {
+  flex-grow: 1;
+}
+
+/* MoodFilter and IngredientInput */
+input[type="text"],
+select {
+  font-size: 1.1rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+select {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+
+select:focus,
+input[type="text"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  header {
+    font-size: 2rem;
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .container {
+    padding: 1rem;
+  }
+
+  .recipe-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .recipe-card {
+    padding: 1rem;
+  }
+
+  .recipe-card img {
+    max-width: 220px;
+    height: 140px;
+  }
+
+  .recipe-details {
+    padding: 1.5rem;
+  }
+
+  .recipe-details h2 {
+    font-size: 2.2rem;
+  }
+
+  button {
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    font-size: 1.6rem;
+    padding: 0.8rem;
+  }
+
+  .recipe-details h2 {
+    font-size: 1.8rem;
+  }
+
+  .recipe-list {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-card {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .recipe-card img {
+    max-width: 180px;
+    height: 120px;
+  }
+
+  .container {
+    padding: 0.5rem;
   }
 }
